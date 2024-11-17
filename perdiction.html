@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results - Stock Prediction Website</title>
+    <style>
+        body {
+            background-color: #111;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        h2 {
+            margin: 0 0 15px;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #111;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ffae00;
+        }
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="prediction.html">Prediction Details</a>
+            <a href="About.html">Results</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+   
+    <main>
+        <section id="result-section">
+            <h2>Prediction Results</h2>
+
+            <!-- Dropdown for selecting stock symbol -->
+            <label for="stock-symbol-dropdown">Select Stock Symbol:</label>
+            <select id="stock-symbol-dropdown">
+                <option value="AAPL">Apple (AAPL)</option>
+                <option value="GOOGL">Google (GOOGL)</option>
+                <option value="MSFT">Microsoft (MSFT)</option>
+                <option value="AMZN">Amazon (AMZN)</option>
+                <option value="NSGN">NeuroSign (NSGN)</option> <!-- Added NeuroSign -->
+            </select>
+
+            <!-- Dropdown for selecting time frame -->
+            <label for="time-frame-dropdown">Select Time Frame:</label>
+            <select id="time-frame-dropdown">
+                <option value="Next Day">Next Day</option>
+                <option value="Next Week">Next Week</option>
+                <option value="Next Month">Next Month</option>
+            </select>
+
+            <!-- Display the prediction output -->
+            <div id="result-output">
+                <p><strong>Stock Symbol:</strong> <span id="stock-symbol">AAPL</span></p>
+                <p><strong>Predicted Change:</strong> <span id="predicted-change">+5.2%</span></p>
+                <p><strong>Time Frame:</strong> <span id="time-frame">Next Week</span></p>
+                <p><strong>Insights:</strong> <span id="insights">Positive sentiment in market.</span></p>
+            </div>
+
+            <!-- Buttons for additional details -->
+            <div id="details-buttons">
+                <button class="button" onclick="showSentimentAnalysis()">Sentiment Analysis</button>
+                <button class="button" onclick="showHistoricalData()">Historical Data</button>
+                <button class="button" onclick="showRiskAnalysis()">Risk Analysis</button>
+            </div>
+        </section>
+
+        <!-- Additional Information Sections -->
+        <section id="sentiment-analysis" style="display: none;">
+            <h2>Sentiment Analysis</h2>
+            <p>The market sentiment for <span id="selected-stock-symbol">AAPL</span> shows a <strong>positive outlook</strong> due to recent market trends and news sentiment.</p>
+        </section>
+
+        <section id="historical-data" style="display: none;">
+            <h2>Historical Data</h2>
+            <p>Past performance of <span id="selected-stock-symbol">AAPL</span> indicates a consistent growth trend with a high of +10% last month.</p>
+        </section>
+
+        <section id="risk-analysis" style="display: none;">
+            <h2>Risk Analysis</h2>
+            <p>The current risk factor for <span id="selected-stock-symbol">AAPL</span> is <strong>moderate</strong> based on market volatility and recent price fluctuations.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stock Prediction Website</p>
+    </footer>
+
+    <script>
+        // Sample data structure to hold insights for each stock, timeframe, and predicted change
+        const predictedChangeData = {
+            "AAPL": {
+                "Next Day": "+0.5%",
+                "Next Week": "+5.2%",
+                "Next Month": "+10%"
+            },
+            "GOOGL": {
+                "Next Day": "-0.3%",
+                "Next Week": "+3.0%",
+                "Next Month": "+7.5%"
+            },
+            "MSFT": {
+                "Next Day": "+0.2%",
+                "Next Week": "+4.5%",
+                "Next Month": "+8.0%"
+            },
+            "AMZN": {
+                "Next Day": "-1.0%",
+                "Next Week": "+2.0%",
+                "Next Month": "+6.0%"
+            },
+            "NSGN": {  // Added NeuroSign data
+                "Next Day": "+1.2%",
+                "Next Week": "+6.5%",
+                "Next Month": "+12%"
+            }
+        };
+    
+        // Sentiment, historical data, and risk analysis for each company
+        const sentimentData = {
+            "AAPL": "Positive sentiment in market due to strong earnings and product innovation.",
+            "GOOGL": "Mixed sentiment as investors await updates on AI advancements.",
+            "MSFT": "Neutral sentiment with steady demand for cloud services.",
+            "AMZN": "Positive sentiment driven by strong Q4 sales expectations.",
+            "NSGN": "Bullish sentiment due to groundbreaking advancements in AI for healthcare."
+        };
+    
+        const historicalData = {
+            "AAPL": "Apple has seen a consistent increase of 5% per month for the last 6 months.",
+            "GOOGL": "Google’s stock saw a 15% increase over the last quarter following AI developments.",
+            "MSFT": "Microsoft reported a 10% growth in cloud services in the last year.",
+            "AMZN": "Amazon's stock grew by 8% during the last holiday season.",
+            "NSGN": "NeuroSign saw a 20% growth in stock value last month following AI breakthrough in healthcare."
+        };
+    
+        const riskAnalysis = {
+            "AAPL": "Low risk: Apple has strong market fundamentals and brand loyalty.",
+            "GOOGL": "Moderate risk: Regulatory challenges could affect growth.",
+            "MSFT": "Low risk: Microsoft’s cloud business continues to grow steadily.",
+            "AMZN": "High risk: Seasonal volatility can lead to fluctuating earnings.",
+            "NSGN": "Moderate risk: While AI in healthcare is promising, competition and regulation may pose challenges."
+        };
+    
+        // Function to update the displayed prediction details and insights based on selections
+        function updatePredictionDetails() {
+            const stockSymbol = document.getElementById('stock-symbol-dropdown').value;
+            const timeFrame = document.getElementById('time-frame-dropdown').value;
+    
+            // Update the displayed stock symbol and time frame
+            document.getElementById("stock-symbol").textContent = stockSymbol;
+            document.getElementById("time-frame").textContent = timeFrame;
+            document.getElementById("selected-stock-symbol").textContent = stockSymbol;
+    
+            // Get the predicted change for the selected stock and time frame
+            const predictedChange = predictedChangeData[stockSymbol][timeFrame];
+            document.getElementById("predicted-change").textContent = predictedChange;
+    
+            // Update insights based on the selected stock symbol and time frame
+            const insight = insightsData[stockSymbol][timeFrame];
+            document.getElementById("insights").textContent = insight;
+        }
+    
+        // Update prediction details when dropdowns change
+        document.getElementById('stock-symbol-dropdown').addEventListener('change', updatePredictionDetails);
+        document.getElementById('time-frame-dropdown').addEventListener('change', updatePredictionDetails);
+    
+        // Functions to show and hide additional sections
+        function showSentimentAnalysis() {
+            hideAllDetails();
+            const stockSymbol = document.getElementById('stock-symbol-dropdown').value;
+            const sentiment = sentimentData[stockSymbol];
+            document.getElementById('sentiment-analysis').style.display = 'block';
+            document.getElementById('sentiment-analysis').innerHTML = `
+                <h2>Sentiment Analysis</h2>
+                <p>The market sentiment for <span id="selected-stock-symbol">${stockSymbol}</span> shows a <strong>${sentiment}</strong></p>
+            `;
+        }
+    
+        function showHistoricalData() {
+            hideAllDetails();
+            const stockSymbol = document.getElementById('stock-symbol-dropdown').value;
+            const history = historicalData[stockSymbol];
+            document.getElementById('historical-data').style.display = 'block';
+            document.getElementById('historical-data').innerHTML = `
+                <h2>Historical Data</h2>
+                <p>Past performance of <span id="selected-stock-symbol">${stockSymbol}</span> indicates: <strong>${history}</strong></p>
+            `;
+        }
+    
+        function showRiskAnalysis() {
+            hideAllDetails();
+            const stockSymbol = document.getElementById('stock-symbol-dropdown').value;
+            const risk = riskAnalysis[stockSymbol];
+            document.getElementById('risk-analysis').style.display = 'block';
+            document.getElementById('risk-analysis').innerHTML = `
+                <h2>Risk Analysis</h2>
+                <p>The current risk factor for <span id="selected-stock-symbol">${stockSymbol}</span> is: <strong>${risk}</strong></p>
+            `;
+        }
+    
+        function hideAllDetails() {
+            document.getElementById('sentiment-analysis').style.display = 'none';
+            document.getElementById('historical-data').style.display = 'none';
+            document.getElementById('risk-analysis').style.display = 'none';
+        }
+    
+        // Initialize prediction details on page load
+        updatePredictionDetails();
+    </script>
+    
+</body>
+</html>
+

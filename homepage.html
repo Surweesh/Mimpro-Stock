@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction Website - Home</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background and Font Styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: #f5f5f5;
+            background-color: #111;
+            overflow-x: hidden;
+        }
+        
+        /* Sticky Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            margin: 0 20px;
+            color: #fff;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('img.jpeg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #f5f5f5;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+        .hero .cta-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #111;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #ffae00;
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .features, .benefits, .testimonials {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 50px;
+            border-radius: 10px;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials */
+        .testimonials p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Scroll Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href>Home</a>
+            <a href="perdiction.html">Prediction Details</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to the Future of Stock Prediction</h1>
+        <p>Experience the power of AI-driven stock forecasts with market-leading accuracy and timely insights. Navigate the markets with confidence and precision.</p>
+        <button class="cta-button" onclick="window.location.href='perdiction.html'">Start Predicting Now</button>
+
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Features</h2>
+        <p>Our platform provides real-time predictions for the most popular stocks. With advanced analytics, we bring you the insights you need to make smarter investment decisions.</p>
+        <ul>
+            <li><strong>Real-Time Predictions:</strong> Updated every hour with the latest market data.</li>
+            <li><strong>Sentiment Analysis:</strong> Gain insights into market sentiment for your favorite stocks.</li>
+            <li><strong>Historical Data:</strong> Access past performance to evaluate trends and patterns.</li>
+        </ul>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <h2>Benefits</h2>
+        <p>Our predictions go beyond numbers, offering context and expert-driven insights. Here’s what you’ll gain:</p>
+        <ul>
+            <li><strong>Accurate Forecasts:</strong> Make decisions with the highest accuracy predictions available.</li>
+            <li><strong>Market Sentiment Analysis:</strong> Understand the impact of current events on stocks.</li>
+            <li><strong>Risk Management:</strong> Leverage data-driven tools to manage your investments wisely.</li>
+        </ul>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <p>"The predictions are incredibly accurate. I feel confident making trades based on their insights!" - <strong>Jordan T.</strong></p>
+        <p>"A must-have tool for any serious investor. The sentiment analysis alone is worth it." - <strong>Alex K.</strong></p>
+        <p>"I’ve saved so much time and money thanks to this website’s predictions." - <strong>Sarah L.</strong></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Stock Prediction Website</p>
+    </footer>
+</body>
+</html>
